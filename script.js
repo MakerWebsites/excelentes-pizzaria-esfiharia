@@ -113,6 +113,7 @@ function submitOrder() {
     const cep = document.getElementById('cep').value;
     const paymentMethod = document.getElementById('payment-method').value;
     const change = document.getElementById('change').value;
+    const observations = document.getElementById('observations').value; // Pega as observações
 
     if (!name || !address || !number || !neighborhood || !cep || !paymentMethod) {
         alert("Por favor, preencha todos os campos.");
@@ -124,6 +125,11 @@ function submitOrder() {
 *Endereço:* ${address}, ${number}, ${neighborhood} - *CEP:* ${cep}\n
 *Forma de pagamento:* ${paymentMethod}\n
 `;
+
+    // Inclui a chave Pix se o método de pagamento for Pix
+    if (paymentMethod === 'pix') {
+        orderSummary += `*Chave Pix:* Pix Celular: (11)917902466\n`;
+    }
 
     if (paymentMethod === 'dinheiro' && change) {
         orderSummary += `Troco para: R$${change}\n`;
@@ -139,6 +145,11 @@ function submitOrder() {
     });
 
     orderSummary += `\n*Total:* R$${total.toFixed(2).replace('.', ',')}\n`; // Adiciona o total do pedido
+
+    // Adiciona as observações se existirem
+    if (observations) {
+        orderSummary += `\n*Observações:* ${observations}\n`;
+    }
 
     const whatsappMessage = encodeURIComponent(orderSummary);
     const whatsappUrl = `https://wa.me/5511968559541?text=${whatsappMessage}`; // Substitua pelo número do WhatsApp
