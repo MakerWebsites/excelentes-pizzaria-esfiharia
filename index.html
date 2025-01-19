@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Excelentes Pizzaria e Esfiharia</title>
+    <style>
+        /* Estilos de layout e responsividade mantidos do código anterior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #FFA500;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            position: fixed;
+            width: 100%;
+        }
+
+        header img {
+            width: 20%;
+            padding: 10px;
+        }
+
+        /* Container da lista */
+        .scroll-list-container {
+            z-index: 999;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            background-color: transparent;
+            padding: 0px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilização dos itens da lista */
+        .scroll-list-container a {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            margin: 0 1px;
+            border-radius: 5px;
+            background-color: #ff8c0078;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-list-container a:hover {
+            background-color: #FF8C00;
+            color: #fff;
+            border-color: yellow;
+        }
+
+        /* Para esconder a barra de rolagem em navegadores */
+        .scroll-list-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .scroll-list-container::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+
+        .scroll-list-container::-webkit-scrollbar-track {
+            background-color: #f4f4f4;
+        }
+
+        /* Esconde a barra de rolagem em smartphones */
+        .scroll-list-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #FFA500;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            width: calc(100% - 10px);
+            transition: transform 0.3s ease;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+        }
+
+        .item img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .item-details {
+            text-align: center;
+        }
+
+        .item-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .item-details p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .item-details span {
+            font-size: 1.2rem;
+            color: #FFA500;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #FFA500;
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #FF8C00;
+        }
+
+        .cart {
+            width: 90%;
+            border: 1px solid #FFA500;
+            padding: 20px;
+            margin-top: 40px;
+            background-color: #1E1E1E;
+        }
+
+        .cart h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #2A2A2A;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .cart-item button {
+            margin-left: 10px;
+        }
+
+        .form {
+            margin-top: 40px;
+        }
+
+        .form h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #FFA500;
+            background-color: #1E1E1E;
+            color: #FFA500;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #FF8C00;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .footer a {
+            color: #FFA500;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (min-width: 1200px) {
+
+            header img {
+                width: 10%;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .item {
+                width: calc(25% - 10px);
+            }
+
+            button {
+                font-size: 1.2rem;
+                padding: 12px 24px;
+            }
+
+            .cart h2,
+            .form h2 {
+                font-size: 2rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 1199px) and (min-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .item {
+                width: calc(33.33% - 10px);
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .cart h2,
+            .form h2 {
+                font-size: 1.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .item {
+                width: calc(50% - 10px);
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .cart h2,
+            .form h2 {
+                font-size: 1.5rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .cart-items {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .footer {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .item {
+                width: calc(100% - 10px);
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+
+            .cart h2,
+            .form h2 {
+                font-size: 1.3rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .footer {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="">
+        <nav class="scroll-list-container">
+            <a href="#pizzas-simples">Pizzas simples</a>
+            <a href="#pizzas-tradicionais">Pizzas tradicionais</a>
+            <a href="#pizzas-doces">Pizzas doces</a>
+            <a href="#section4">Seção 4</a>
+            <a href="#section5">Seção 5</a>
+            <a href="#section6">Seção 6</a>
+            <a href="#section7">Seção 7</a>
+            <a href="#section8">Seção 8</a>
+        </nav>
+    </header>
+    <div class="container">
+
+        <h1>Bem-vindo à Pizzaria & Esfiharia</h1>
+
+        <!-- Seções de itens -->
+        <div class="section" id="pizzas">
+
+            <div>
+
+                <div id="pizzas-simples">
+                    <h2>Pizzas <mark>simples</mark></h2>
+                </div>
+
+                <div class="items">
+
+                    <div class="item">
+                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
+                        <div class="item-details">
+                            <h3>Mussarela</h3>
+                            <p>Musarrela, tomate e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Mussarela', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Calabresa</h3>
+                            <p>Calabresa fatiada, cebola e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Calabresa', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Brigadeiro</h3>
+                            <p>Brigadeiro, granulado e leite condensado.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Brigadeiro', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
+                        <div class="item-details">
+                            <h3>Mussarela</h3>
+                            <p>Musarrela, tomate e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Mussarela', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Calabresa</h3>
+                            <p>Calabresa fatiada, cebola e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Calabresa', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Brigadeiro</h3>
+                            <p>Brigadeiro, granulado e leite condensado.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Brigadeiro', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
+                        <div class="item-details">
+                            <h3>Mussarela</h3>
+                            <p>Musarrela, tomate e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Mussarela', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Calabresa</h3>
+                            <p>Calabresa fatiada, cebola e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Calabresa', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Brigadeiro</h3>
+                            <p>Brigadeiro, granulado e leite condensado.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Brigadeiro', 35.50)">Adicionar</button>
+                    </div>
+
+
+                </div>
+
+                <div id="pizzas-tradicionais">
+                    <h2>Pizzas <mark>Tradicionais</mark></h2>
+                </div>
+
+                <div class="items">
+
+                    <div class="item">
+                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
+                        <div class="item-details">
+                            <h3>Mussarela</h3>
+                            <p>Musarrela, tomate e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Mussarela', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Calabresa</h3>
+                            <p>Calabresa fatiada, cebola e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Calabresa', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Brigadeiro</h3>
+                            <p>Brigadeiro, granulado e leite condensado.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Brigadeiro', 35.50)">Adicionar</button>
+                    </div>
+
+                </div>
+
+                <div id="pizzas-doces">
+                    <h2>Pizzas <mark>Doces</mark></h2>
+                </div>
+
+                <div class="items">
+
+                    <div class="item">
+                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
+                        <div class="item-details">
+                            <h3>Mussarela</h3>
+                            <p>Musarrela, tomate e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Mussarela', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Calabresa</h3>
+                            <p>Calabresa fatiada, cebola e azeitona.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Calabresa', 35.50)">Adicionar</button>
+                    </div>
+
+                    <div class="item">
+                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
+                        <div class="item-details">
+                            <h3>Brigadeiro</h3>
+                            <p>Brigadeiro, granulado e leite condensado.</p>
+                            <span>R$35,50</span>
+                        </div>
+                        <button onclick="addToCart('Brigadeiro', 35.50)">Adicionar</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Carrinho -->
+            <div class="cart" id="cart">
+                <h2>Carrinho</h2>
+                <div class="cart-items" id="cart-items"></div>
+                <p id="cart-total"></p>
+                <button onclick="clearCart()">Esvaziar Carrinho</button>
+            </div>
+
+            <!-- Formulário de entrega -->
+            <div class="form">
+                <h2>Dados de Entrega</h2>
+                <label for="name">Nome</label>
+                <input type="text" id="name" placeholder="Seu nome" />
+                <label for="address">Endereço</label>
+                <input type="text" id="address" placeholder="Seu endereço" />
+                <label for="number">Número</label>
+                <input type="text" id="number" placeholder="Número da residência" />
+                <label for="neighborhood">Bairro</label>
+                <input type="text" id="neighborhood" placeholder="Bairro" />
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" placeholder="CEP" />
+                <label for="payment-method">Forma de Pagamento</label>
+                <select id="payment-method" onchange="toggleChangeField()">
+                    <option value="pix">Pix</option>
+                    <option value="cartao">Cartão</option>
+                    <option value="dinheiro">Dinheiro</option>
+                </select>
+                <div id="change-field" style="display:none;">
+                    <label for="change">Troco para</label>
+                    <input type="number" id="change" placeholder="Valor para troco" />
+                </div>
+                <button onclick="submitOrder()">Finalizar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Pizzaria & Esfiharia | <a href="#">Política de Privacidade</a></p>
+        <h6><a href="#">desenvolvido por Antolin Junior</a></h6>
+    </div>
+
+    <script>
+        const cart = [];
+
+        function addToCart(itemName, itemPrice) {
+            const itemIndex = cart.findIndex(item => item.name === itemName);
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity++;
+                cart[itemIndex].totalPrice = cart[itemIndex].quantity * itemPrice;
+            } else {
+                cart.push({ name: itemName, quantity: 1, price: itemPrice, totalPrice: itemPrice });
+            }
+            updateCart();
+        }
+
+        function removeFromCart(itemName) {
+            const itemIndex = cart.findIndex(item => item.name === itemName);
+            if (itemIndex > -1) {
+                cart.splice(itemIndex, 1);
+            }
+            updateCart();
+        }
+
+        function changeQuantity(itemName, change) {
+            const itemIndex = cart.findIndex(item => item.name === itemName);
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity += change;
+                if (cart[itemIndex].quantity <= 0) {
+                    cart.splice(itemIndex, 1);
+                } else {
+                    cart[itemIndex].totalPrice = cart[itemIndex].quantity * cart[itemIndex].price;
+                }
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                total += item.totalPrice;
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    ${item.quantity}x ${item.name} - R$${item.totalPrice.toFixed(2).replace('.', ',')}
+                    <button onclick="changeQuantity('${item.name}', -1)">-</button>
+                    <button onclick="changeQuantity('${item.name}', 1)">+</button>
+                    <button onclick="removeFromCart('${item.name}')">Remover</button>
+                `;
+                cartItemsDiv.appendChild(cartItem);
+            });
+            const cartTotal = document.getElementById('cart-total');
+            cartTotal.textContent = `Total: R$${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function toggleChangeField() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            const changeField = document.getElementById('change-field');
+            if (paymentMethod === 'dinheiro') {
+                changeField.style.display = 'block';
+            } else {
+                changeField.style.display = 'none';
+            }
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const number = document.getElementById('number').value;
+            const neighborhood = document.getElementById('neighborhood').value;
+            const cep = document.getElementById('cep').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+            const change = document.getElementById('change').value;
+
+            if (!name || !address || !number || !neighborhood || !cep || !paymentMethod) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            let orderSummary = `
+        *Nome:* ${name}\n
+        *Endereço:* ${address}, ${number}, ${neighborhood} - *CEP:* ${cep}\n
+        *Forma de pagamento:* ${paymentMethod}\n
+    `;
+
+            if (paymentMethod === 'dinheiro' && change) {
+                orderSummary += `Troco para: R$${change}\n`;
+            }
+
+            orderSummary += "\nItens do pedido:\n";
+            let total = 0; // Inicialize o total
+
+            // Adiciona os itens do carrinho ao resumo do pedido e calcula o total
+            cart.forEach(item => {
+                orderSummary += `${item.quantity}x ${item.name} - R$${item.totalPrice.toFixed(2).replace('.', ',')}\n`;
+                total += item.totalPrice; // Adiciona o preço total de cada item
+            });
+
+            orderSummary += `\n*Total:* R$${total.toFixed(2).replace('.', ',')}\n`; // Adiciona o total do pedido
+
+            const whatsappMessage = encodeURIComponent(orderSummary);
+            const whatsappUrl = `https://wa.me/5511968559541?text=${whatsappMessage}`; // Substitua pelo número do WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            cart.length = 0;
+            updateCart();
+        }
+
+    </script>
+</body>
+
+</html>
