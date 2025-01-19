@@ -1,5 +1,43 @@
 const cart = [];
 
+function showMessage(messageText, backgroundColor = '#4CAF50', textColor = 'white') {
+    // Cria o elemento da mensagem
+    const message = document.createElement('div');
+    message.textContent = messageText;
+    message.style.position = 'fixed';
+    message.style.top = '10px';
+    message.style.right = '20px';
+    message.style.backgroundColor = backgroundColor;
+    message.style.color = textColor;
+    message.style.padding = '10px 20px';
+    message.style.borderRadius = '5px';
+    message.style.fontFamily = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
+    message.style.fontSize = '24px';
+    message.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)';
+    message.style.opacity = '0';
+    message.style.transition = 'opacity 0.5s ease, top 0.5s ease';
+    message.style.zIndex = '1000';
+
+    // Adiciona a mensagem ao body
+    document.body.appendChild(message);
+
+    // Mostra a mensagem com animação
+    setTimeout(() => {
+        message.style.opacity = '1';
+        message.style.top = '10%';
+    }, 10);
+
+    // Remove a mensagem após 3 segundos
+    setTimeout(() => {
+        message.style.opacity = '0';
+        message.style.top = '10%';
+        setTimeout(() => {
+            document.body.removeChild(message);
+        }, 500);
+    }, 3000);
+}
+
+
 function addToCart(itemName, itemPrice) {
     const itemIndex = cart.findIndex(item => item.name === itemName);
     if (itemIndex > -1) {
@@ -8,7 +46,9 @@ function addToCart(itemName, itemPrice) {
     } else {
         cart.push({ name: itemName, quantity: 1, price: itemPrice, totalPrice: itemPrice });
     }
+    showMessage('Adicionado com sucesso!', '#121212', 'white');
     updateCart();
+
 }
 
 function removeFromCart(itemName) {
@@ -16,6 +56,9 @@ function removeFromCart(itemName) {
     if (itemIndex > -1) {
         cart.splice(itemIndex, 1);
     }
+    showMessage('Item removido!', '#F44336', 'white');
+
+
     updateCart();
 }
 
@@ -100,7 +143,7 @@ function submitOrder() {
     const whatsappMessage = encodeURIComponent(orderSummary);
     const whatsappUrl = `https://wa.me/5511968559541?text=${whatsappMessage}`; // Substitua pelo número do WhatsApp
     window.open(whatsappUrl, '_blank');
-
+    showMessage('Pedido enviado com sucesso!', '#121212', 'white');
     cart.length = 0;
     updateCart();
 }
