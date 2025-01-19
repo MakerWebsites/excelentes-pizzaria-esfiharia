@@ -16,6 +16,8 @@
             margin: 0;
             padding: 0;
             background-color: #121212;
+            background-image: url(fundo-fast-food.png);
+            background-size: 35%;
             color: #FFA500;
         }
 
@@ -125,6 +127,9 @@
 
         .item:hover {
             transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.181);
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .item img {
@@ -241,10 +246,18 @@
         }
 
         .footer {
+            background-color: #ffffff22;
             text-align: center;
-            margin-top: 40px;
             font-size: 1rem;
             color: #ccc;
+            position: fixed;
+            width: 100%;
+            height: 8%;
+            bottom: 0;
+        }
+        
+        .footer p {
+            margin: 0;
         }
 
         .footer a {
@@ -405,7 +418,7 @@
     </header>
     <div class="container">
 
-        <h1>Bem-vindo à Pizzaria & Esfiharia</h1>
+        <h1>Cardápio Digital <mark style="color: white; background-color: transparent;">Excelentes</mark></h1>
 
         <!-- Seções de itens -->
         <div class="section" id="pizzas">
@@ -626,8 +639,8 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2025 Pizzaria & Esfiharia | <a href="#">Política de Privacidade</a></p>
-        <h6><a href="#">desenvolvido por Antolin Junior</a></h6>
+        <p>&copy; 2025 Pizzaria & Esfiharia | <a href="politica-privacidade.html">Política de Privacidade</a></p>
+        <h6><a href="https://www.instagram.com/antolin.a.junior">desenvolvido por Antolin Junior</a></h6>
     </div>
 
     <script>
