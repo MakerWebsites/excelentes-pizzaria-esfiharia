@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Estamos trabalhando em um site que vai facilitar sua vida. Em breve, você terá acesso a tudo o que precisa, de forma simples e rápida.">
+    <title>Página em construção. Logo estaremos de volta.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+
+            font-family: "Roboto Slab", serif;
+            background: linear-gradient(blue, rgb(90, 90, 251), rgb(90, 90, 245), rgb(0, 0, 113));
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+
+            padding: 10%;
+
+
+        }
+
+        h3 {
+            text-align: center;
+            padding-top: 5%;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        img {
+            width: 320px;
+            bottom: 0;
+            z-index: 999;
+        }
+
+        #fundo {
+            background-color: blue;
+            width: 100%;
+            height: 20%;
+        }
+
+        footer p {
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        footer button {
+            margin-top: 7px;
+            padding: 8px;
+            border-radius: 3px;
+            border: none;
+            animation: animaBotaoVoltar 5s infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes animaBotaoVoltar {
+            60% {
+                
+                background-color: red;
+                color: white;
+            }
+
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <h3>
+        Estamos trabalhando em um site que vai facilitar sua vida. Em breve, você terá acesso a tudo o que precisa, de
+        forma simples e rápida.
+    </h3>
+
+    <img src="assets.css/image.css/pagina-em-construcao.png" alt="">
+
+    <footer>
+        <p>SiteBooster &copy;-2024</p>
+        <button onclick="voltarAoInicio()">Voltar à página inicial</button>
+    </footer>
+</body>
+<script src="carregarPaginas.js"></script>
+
+</html>

@@ -1,297 +1,354 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo de Lençol 400 Fios Queen</title>
+  <style>
+    :root {
+      --primary: #d43798;
+      --bg: #fdfdfd;
+      --text: #333;
+      --accent: #e2e2e2;
+    }
 
-    <title>Excelentes Pizzaria e Esfiharia</title>
-    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-    </style>
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+      height: auto;
+    }
+
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel .prev {
+      left: 10px;
+    }
+
+    .carousel .next {
+      right: 10px;
+    }
+
+    .benefits, .features, .problems, .testimonials, .faq {
+      margin-top: 2rem;
+    }
+
+    .features ul, .benefits ul, .problems ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li, .benefits li, .problems li {
+      background-color: var(--accent);
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .buy-section {
+      background-color: var(--primary);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+
+    .buy-section a {
+      display: inline-block;
+      background-color: white;
+      color: var(--primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 1rem;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+    }
+
+    .testimonial-images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .testimonial-images img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item h3 {
+      cursor: pointer;
+      background: var(--accent);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .faq-item p {
+      display: none;
+      padding: 0.5rem 1rem;
+    }
+
+    .sold-count {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+
+    .trust-seals {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .trust-seals h2 {
+      margin-bottom: 1rem;
+    }
+
+    .trust-seals img {
+      width: 120px;
+      margin: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eee;
+      margin-bottom: 2rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 0.8rem;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 100;
+    }
+
+    @media (max-width: 768px) {
+      .trust-seals img {
+        width: 90px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <header>
-        <img src="logo.png" alt="">
-        <nav class="scroll-list-container">
-            <a href="#pizzas-simples">Pizzas simples</a>
-            <a href="#pizzas-tradicionais">Pizzas tradicionais</a>
-            <a href="#pizzas-doces">Pizzas doces</a>
-            <a href="#esfihas">Esfihas</a>
-            <a href="#section5">Seção 5</a>
-            <a href="#section6">Seção 6</a>
-            <a href="#section7">Seção 7</a>
-            <a href="#section8">Seção 8</a>
-        </nav>
-    </header>
-    <div class="container">
+  <header>
+    <h1>Jogo de Lençol 400 Fios Queen</h1>
+    <p>Conforto, sofisticação e qualidade para suas noites de sono</p>
+  </header>
 
-        <h1>Cardápio Digital <mark style="color: white; background-color: transparent;">Excelentes</mark></h1>
+  <main>
+    <section class="hero">
+      <h1>Durma com Qualidade e Estilo</h1>
+      <p>Micropercal 400 fios com toque acetinado e ajuste perfeito.</p>
+    </section>
 
-        <!-- Seções de itens -->
-        <div class="section" id="pizzas">
+    <section class="carousel">
+      <div class="carousel-images">
+        <img src="assets.css/image.css/rosa.webp" alt="Imagem do produto 1">
+        <img src="assets.css/image.css/azul.webp" alt="Imagem do produto 2">
+        <img src="assets.css/image.css/vermelho.webp" alt="Imagem do produto 3">
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </section>
 
-            <div>
+    <section class="problems">
+      <h2>Problemas que ele resolve</h2>
+      <ul>
+        <li>Desconforto durante a noite com tecidos quentes e ásperos</li>
+        <li>Lençóis que saem do lugar durante o sono</li>
+        <li>Dificuldade em encontrar beleza e praticidade em um único produto</li>
+      </ul>
+    </section>
 
-                <div id="pizzas-simples">
-                    <h2>Pizzas <mark>simples</mark></h2>
-                </div>
+    <section class="benefits">
+      <h2>O que ele oferece</h2>
+      <ul>
+        <li>Toque macio e sedoso</li>
+        <li>Estilo sofisticado com detalhe em ponto palito</li>
+        <li>Durabilidade e fácil manutenção</li>
+      </ul>
+    </section>
 
-                <div class="items">
+    <section class="features">
+      <h2>Especificações do Produto</h2>
+      <ul>
+        <li>Micropercal 400 fios, 100% poliéster</li>
+        <li>Lençol com elástico para colchões Queen</li>
+        <li>2 fronhas com ponto palito</li>
+        <li>Diversas cores à escolha</li>
+      </ul>
+    </section>
 
-                    <div class="item">
-                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
-                        <div class="item-details">
-                            <h3>Mussarela</h3>
-                            <p>Musarrela, tomate e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Mussarela', 35.50)">Adicionar</button>
-                    </div>
+    <section class="testimonials">
+      <h2>Depoimentos de Clientes</h2>
+      <div class="testimonial-images">
+        <img src="assets.css/image.css/Captura de tela 2025-04-18 193539.png" alt="Comentário 1">
+        <img src="assets.css/image.css/Captura de tela 2025-04-18 194049.png" alt="Comentário 1">
+        <img src="assets.css/image.css/Captura de tela 2025-04-18 194138.png" alt="Comentário 1">
+      </div>
+    </section>
 
-                    <div class="item">
-                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Calabresa</h3>
-                            <p>Calabresa fatiada, cebola e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Calabresa', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Brigadeiro</h3>
-                            <p>Brigadeiro, granulado e leite condensado.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Brigadeiro', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
-                        <div class="item-details">
-                            <h3>Mussarela</h3>
-                            <p>Musarrela, tomate e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Mussarela', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Calabresa</h3>
-                            <p>Calabresa fatiada, cebola e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Calabresa', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Brigadeiro</h3>
-                            <p>Brigadeiro, granulado e leite condensado.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Brigadeiro', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
-                        <div class="item-details">
-                            <h3>Mussarela</h3>
-                            <p>Musarrela, tomate e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Mussarela', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Calabresa</h3>
-                            <p>Calabresa fatiada, cebola e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Calabresa', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Brigadeiro</h3>
-                            <p>Brigadeiro, granulado e leite condensado.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Brigadeiro', 35.50)">Adicionar</button>
-                    </div>
-
-
-                </div>
-
-                <div id="pizzas-tradicionais">
-                    <h2>Pizzas <mark>Tradicionais</mark></h2>
-                </div>
-
-                <div class="items">
-
-                    <div class="item">
-                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
-                        <div class="item-details">
-                            <h3>Mussarela</h3>
-                            <p>Musarrela, tomate e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Mussarela', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Calabresa</h3>
-                            <p>Calabresa fatiada, cebola e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Calabresa', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Brigadeiro</h3>
-                            <p>Brigadeiro, granulado e leite condensado.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Brigadeiro', 35.50)">Adicionar</button>
-                    </div>
-
-                </div>
-
-                <div id="pizzas-doces">
-                    <h2>Pizzas <mark>Doces</mark></h2>
-                </div>
-
-                <div class="items">
-
-                    <div class="item">
-                        <img src="pizza-mussarela.png" alt="Pizza de Calabresa">
-                        <div class="item-details">
-                            <h3>Mussarela</h3>
-                            <p>Musarrela, tomate e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Mussarela', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-calabresa.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Calabresa</h3>
-                            <p>Calabresa fatiada, cebola e azeitona.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Calabresa', 35.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="pizza-brigadeiro.png" alt="Pizza de Queijo">
-                        <div class="item-details">
-                            <h3>Brigadeiro</h3>
-                            <p>Brigadeiro, granulado e leite condensado.</p>
-                            <span>R$35,50</span>
-                        </div>
-                        <button onclick="addToCart('Pizza Brigadeiro', 35.50)">Adicionar</button>
-                    </div>
-
-                </div>
-
-                <div id="esfihas">
-                    <h2>Esfihas <mark>simples</mark></h2>
-                </div>
-
-                <div class="items">
-
-                    <div class="item">
-                        <img src="esfiha-calabresa.png" alt="Pizza de Calabresa">
-                        <div class="item-details">
-                            <h3>Calabresa</h3>
-                            <p>Calabresa, cebola e temperos.</p>
-                            <span>R$2,50</span>
-                        </div>
-                        <button onclick="addToCart('Esfiha Calabresa', 2.50)">Adicionar</button>
-                    </div>
-
-                    <div class="item">
-                        <img src="esfiha-frango-tomate.png" alt="Pizza de Calabresa">
-                        <div class="item-details">
-                            <h3>Frango</h3>
-                            <p>Calabresa, cebola e temperos.</p>
-                            <span>R$2,50</span>
-                        </div>
-                        <button onclick="addToCart('Esfiha Frango', 2.50)">Adicionar</button>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Carrinho -->
-            <div class="cart" id="cart">
-                <h2>Carrinho</h2>
-                <div class="cart-items" id="cart-items"></div>
-                <p id="cart-total"></p>
-            </div>
-
-            <!-- Formulário de entrega -->
-            <div class="form" id="delivery">
-                <h2>Dados de Entrega</h2>
-                <label for="name">Nome</label>
-                <input type="text" id="name" placeholder="Seu nome" />
-                <label for="address">Endereço</label>
-                <input type="text" id="address" placeholder="Seu endereço" />
-                <label for="number">Número</label>
-                <input type="text" id="number" placeholder="Número da residência" />
-                <label for="neighborhood">Bairro</label>
-                <input type="text" id="neighborhood" placeholder="Bairro" />
-                <label for="cep">CEP</label>
-                <input type="text" id="cep" placeholder="CEP" />
-                <label for="observations">Observações (ex: sem cebola, sem queijo, etc.):</label>
-                <textarea style="background-color: transparent; color: white;" id="observations" name="observations" rows="4" cols="30" placeholder="Escreva aqui. Observações (ex: sem cebola, sem queijo, etc.)"></textarea>
-                <label for="payment-method">Forma de Pagamento</label>
-                <select id="payment-method" onchange="toggleChangeField()">
-                    <option value="pix">Pix</option>
-                    <option value="cartao">Cartão</option>
-                    <option value="dinheiro">Dinheiro</option>
-                </select>
-
-                <div id="change-field" style="display:none;">
-                    <label for="change">Troco para</label>
-                    <input type="number" id="change" placeholder="Valor para troco" />
-                </div>
-                <button onclick="submitOrder()">Finalizar Pedido</button>
-            </div>
-        </div>
+    <div class="sold-count">
+      Mais de <strong>5.000 unidades vendidas</strong> em todo o Brasil!
     </div>
 
-    <div class="footer">
-        <nav class="scroll-list-container-footer">
-            <div><a href="#cart"><i class="fas fa-shopping-cart"> Carrinho</i></a></div>
+    <section class="buy-section">
+      <h2>Adquira o seu agora</h2>
+      <p>Promoções exclusivas e envio rápido para todo o Brasil.</p>
+      <a href="https://wa.me/5511981374067" target="_blank">Compre Agora</a>
+    </section>
 
-            <div><a href="#delivery"><i class="fas fa-paper-plane"> Enviar pedido</i></a></div>
-        </nav>
-        <p>&copy; 2025 Excelentes Pizzaria & Esfiharia | <a href="politica-privacidade.html">Política de Privacidade</a>
-        </p>
-        <h6><a style="color: rgb(255, 255, 255); font-family: 12px;" href="https://www.instagram.com/antolin.a.junior">desenvolvido por Antolin
-                Junior</a><span style="font-size: 14px; border-radius: 5px; font-weight: bold; color: white; background-color: rgba(165, 42, 42, 0.498); padding: 2px;">Imagens ilustrativas</span></h6>
-    </div>
+    <section class="faq">
+      <h2>Perguntas Frequentes</h2>
+      <div class="faq-item">
+        <h3>Qual o tamanho do lençol?</h3>
+        <p>Tamanho Queen, compatível com colchões de até 1,98m x 1,58m x 30cm.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Posso lavar na máquina?</h3>
+        <p>Sim, recomendamos o modo delicado e secagem à sombra.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quais cores estão disponíveis?</h3>
+        <p>Branco, cinza, palha, azul, rose e mais.</p>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="trust-seals">
+      <h2>Compra 100% Segura</h2>
+      <img src="assets.css/image.css/pngwing.com (2).png" alt="Selo SSL">
+    </section>
+  </main>
+
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <footer>
+    <p>&copy; 2025 Pantonny Loja de Enxoval | Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+      item.addEventListener('click', () => {
+        const para = item.nextElementSibling;
+        const display = window.getComputedStyle(para).display;
+        para.style.display = display === 'none' ? 'block' : 'none';
+      });
+    });
+
+    const carouselImages = document.querySelector('.carousel-images');
+    const images = document.querySelectorAll('.carousel-images img');
+    const prevBtn = document.querySelector('.carousel .prev');
+    const nextBtn = document.querySelector('.carousel .next');
+    let index = 0;
+
+    function updateCarousel() {
+      carouselImages.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % images.length;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + images.length) % images.length;
+      updateCarousel();
+    });
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      updateCarousel();
+    }, 3200);
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
-
 </html>
